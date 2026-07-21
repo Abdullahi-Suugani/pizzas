@@ -47,17 +47,60 @@ const pizzaData = [
 ];
 
 function App() {
-  return;
-  <div>
-    <h1> Abdullahi Aden </h1>
-    <Pizzas />
-  </div>;
-}
-
-function Pizzas() {
   return (
     <div>
-      <h1>pizzas </h1>
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+function Header() {
+  return (
+    <h1
+      style={{
+        color: "red",
+        backgroundColor: "blue",
+        textAlign: "center",
+        fontSize: "50px",
+      }}
+    >
+      Fast React Pizza Co.
+    </h1>
+  );
+}
+function Menu() {
+  return (
+    <div>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 4;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+  if (hour >= openHour && hour <= closeHour) alert("we are open ");
+  else
+    alert(
+      "we are open after few minutes so plese wait and go to our website for more information",
+    );
+}
+
+function Pizza() {
+  return (
+    <div className="pizza">
+      <img src="pizzas/focaccia.jpg" alt="Pizza" />
+      <h3>Pizza Margherita</h3>
+      <p>Tomato and mozarella</p>
+      <span>10$</span>
     </div>
   );
 }
