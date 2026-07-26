@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -16,6 +17,7 @@ const pizzaData = [
     photoName: "pizzas/margherita.jpg",
     soldOut: false,
   },
+
   {
     name: "Pizza Spinaci",
     ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
@@ -48,7 +50,7 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -56,27 +58,44 @@ function App() {
   );
 }
 function Header() {
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
   return (
-    <h1
-      style={{
-        color: "red",
-        backgroundColor: "blue",
-        textAlign: "center",
-        fontSize: "50px",
-      }}
-    >
-      Fast React Pizza Co.
-    </h1>
+    <header className="header">
+      <h1 style={style}> Fast React Pizza Co.</h1>;
+    </header>
   );
 }
 function Menu() {
   return (
-    <div>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        price={12}
+        photoName="pizzas/spinaci.jpg"
+      />
+
+      <Pizza
+        name="Pizza Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        price={6}
+        photoName="pizzas/focaccia.jpg"
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
     </div>
   );
 }
@@ -87,21 +106,16 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
-  if (hour >= openHour && hour <= closeHour) alert("we are open ");
-  else
-    alert(
-      "we are open after few minutes so plese wait and go to our website for more information",
-    );
-}
-
-function Pizza() {
+  // if (hour >= openHour && hour <= closeHour) alert("we are open ");
+  // else
+  //   alert(
+  //     "we are open after few minutes so plese wait and go to our website for more information",
+  //   );
   return (
-    <div className="pizza">
-      <img src="pizzas/focaccia.jpg" alt="Pizza" />
-      <h3>Pizza Margherita</h3>
-      <p>Tomato and mozarella</p>
-      <span>10$</span>
-    </div>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We are currently{" "}
+      {isOpen ? "open" : "closed"}{" "}
+    </footer>
   );
 }
 
