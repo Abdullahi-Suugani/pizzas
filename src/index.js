@@ -82,7 +82,7 @@ function Menu() {
           </p>
           <ul className="pizzas">
             {pizzas.map((pizza) => (
-              <Pizza pizzaOb={pizza} key={pizza.name} />
+              <Pizza pizzaObj={pizza} key={pizza.name} />
             ))}
           </ul>
         </>
@@ -107,16 +107,17 @@ function Menu() {
   );
 }
 
-function Pizza({ pizzaOb }) {
-  if (pizzaOb.soldOut) return null;
+function Pizza({ pizzaObj }) {
+  // if (pizzaObj.soldOut) return null;
 
   return (
-    <li className="pizza">
-      <img src={pizzaOb.photoName} alt={pizzaOb.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? " sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{pizzaOb.name}</h3>
-        <p>{pizzaOb.ingredients}</p>
-        <span>{pizzaOb.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
